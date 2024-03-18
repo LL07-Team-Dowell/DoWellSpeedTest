@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/DoWellSpeedTest/static/css/main.8caae72f.css",
+    "main.js": "/DoWellSpeedTest/static/js/main.f2f6947d.js",
+    "index.html": "/DoWellSpeedTest/index.html",
+    "main.8caae72f.css.map": "/DoWellSpeedTest/static/css/main.8caae72f.css.map",
+    "main.f2f6947d.js.map": "/DoWellSpeedTest/static/js/main.f2f6947d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8caae72f.css",
+    "static/js/main.f2f6947d.js"
+  ]
+}
