@@ -1,42 +1,14 @@
-import "./App.css";
-import Footer from "./components/footer";
-import HomePage from "./components/homePage";
-import { CiFacebook, CiLinkedin, CiYoutube } from "react-icons/ci";
+import React from "react";
+import Left from "./components/Left";
+import RightForm from "./components/RightForm";
 
-function App() {
+const App = () => {
   return (
-    <div className="">
-      <div className="flex bg-[#232222] justify-between px-[3rem] py-[2rem]">
-        <h1 className="text-[25px] font-bold text-white">Dowell Speed Test</h1>
-        <div className="flex gap-4">
-          <a
-            href="https://www.linkedin.com/company/dowell-research-uk-limited"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <CiLinkedin color="#2FA043" size={25} />
-          </a>
-          <a
-            href="https://www.youtube.com/@uxlivinglab"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <CiYoutube size={25} color="#2FA043" />
-          </a>
-
-          <a
-            href="https://web.facebook.com/uxlivinglab"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <CiFacebook size={25} color="#2FA043" />
-          </a>
-        </div>
-      </div>
-      <HomePage />
-      <Footer />
+    <div className="w-[100%] h-[100vh] flex justify-center items-center gap-[60px] sm:flex-col smm:h-[170vh] smn:h-[120vh]">
+      <Left />
+      <RightForm />
     </div>
   );
-}
+};
 
 export default App;
