@@ -1,14 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Left from "./components/Left";
-import RightForm from "./components/RightForm";
+import RightForm from "./pages/RightForm";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
-const App = () => {
+import "./App.css";
+import { Result } from "./pages/Result";
+
+export default function App() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
+      setIsMobile(isMobile);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <div className="w-[100%] h-[100vh] flex justify-center items-center gap-[60px] sm:flex-col smm:h-[170vh] smn:h-[120vh]">
-      <Left />
-      <RightForm />
-    </div>
+    <HashRouter basename="/">
+      <div className="app-container">
+        <div className="wrapper">
+          {!isMobile && <Left />}
+          <div className="right-form">
+            <div className="right-form-container">
+              {isMobile && <Left />}
+              <Routes>
+                <Route path="/" element={<RightForm />} />
+                <Route path="/result" element={<Result />} />
+              </Routes>
+            </div>
+          </div>
+        </div>
+      </div>
+    </HashRouter>
   );
-};
-
-export default App;
+}
