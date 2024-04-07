@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/DoWellSpeedTest/static/css/main.e490471c.css",
-    "main.js": "/DoWellSpeedTest/static/js/main.68db9fe6.js",
+    "main.css": "/DoWellSpeedTest/static/css/main.25ba5b88.css",
+    "main.js": "/DoWellSpeedTest/static/js/main.0d06e57a.js",
     "static/media/rmlogodowell.png": "/DoWellSpeedTest/static/media/rmlogodowell.3c11bca6b2f0af780ea5.png",
     "index.html": "/DoWellSpeedTest/index.html",
-    "main.e490471c.css.map": "/DoWellSpeedTest/static/css/main.e490471c.css.map",
-    "main.68db9fe6.js.map": "/DoWellSpeedTest/static/js/main.68db9fe6.js.map"
+    "main.25ba5b88.css.map": "/DoWellSpeedTest/static/css/main.25ba5b88.css.map",
+    "main.0d06e57a.js.map": "/DoWellSpeedTest/static/js/main.0d06e57a.js.map"
   },
   "entrypoints": [
-    "static/css/main.e490471c.css",
-    "static/js/main.68db9fe6.js"
+    "static/css/main.25ba5b88.css",
+    "static/js/main.0d06e57a.js"
   ]
 }
