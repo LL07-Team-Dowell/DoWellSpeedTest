@@ -1,6 +1,6 @@
 import React from "react";
 import doLogo from "../images/rmlogodowell.png";
-import "./styles.css";
+import "./style.css";
 
 const Left = () => {
   return (

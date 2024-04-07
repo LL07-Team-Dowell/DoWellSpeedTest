@@ -2,7 +2,7 @@ import { Button, TextField } from "@mui/material";
 import React, { useState, useRef, useEffect } from "react";
 import Left from "../components/Left";
 import { Link } from "react-router-dom";
-import "../components/styles.css";
+import "../components/style.css";
 
 const RightForm = ({ isMobile }) => {
   const videoRef = useRef(null);

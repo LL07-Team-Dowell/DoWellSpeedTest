@@ -1,6 +1,6 @@
 import React from "react";
-import ResultForm from "../components/ResultForm";
 import { ResultContextProvider } from "../hooks/context";
+import ResultForm from "../components/ResultForm";
 import Overlay from "../components/Overlay";
 
 export function Result() {
