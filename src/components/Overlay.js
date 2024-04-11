@@ -15,7 +15,7 @@ export default function Overlay({ children }) {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          height: "100%",
+          height: "100vh",
           width: "100%",
         }}
       >
