@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  dowellspeedtest:
+    build:
+      context: .
+    container_name: dowellspeedtest
+    restart: always
+    command: npm start
+
+    ports:
+      - 3000:3000
+    expose:
+      - "3000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - default
+networks:
+    default:
+        name: webnet
