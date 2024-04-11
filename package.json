@@ -1,6 +1,5 @@
 {
   "name": "dowellspeedtest",
-  "homepage": "https://ll07-team-dowell.github.io/DoWellSpeedTest",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
