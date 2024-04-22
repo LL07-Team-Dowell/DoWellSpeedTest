@@ -1,3 +1,4 @@
+
 # DoWell SpeedTest using Datacube and SpeedOfMe
 
 ## Overview
@@ -20,48 +21,24 @@ COLLECTIONNAME=examplecollection
 
 ### Installation and Execution
 
-1. Navigate to the `backend` directory:
+To set up the backend using Docker:
+
+1. Navigate to the project directory.
+2. Run the following command to start the Docker containers:
 
 ```bash
-cd backend
+docker-compose up
 ```
 
-2. Install the required npm packages:
+To stop the Docker containers, run:
 
 ```bash
-npm install
-```
-
-3. Start the backend server:
-
-```bash
-npm start
-```
-
-## Frontend Setup
-
-1. Navigate to the `frontend` directory:
-
-```bash
-cd frontend
-```
-
-2. Install the required npm packages:
-
-```bash
-npm install
-```
-
-3. Run the frontend development server:
-
-```bash
-npm run dev
+docker-compose down
 ```
 
 ## Issue Tracking
 
 Please check out our [issue tracker](https://github.com/LL07-Team-Dowell/dowellspeedtest/issues) for any known issues or to report new ones.
-
 
 ---
 
