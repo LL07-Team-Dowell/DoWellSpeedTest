@@ -19,7 +19,7 @@ services:
       - ./frontend:/usr/src/app
       - /usr/src/app/node_modules
     depends_on:
-      - backend
+      - dowellspeedtest-backend
 networks:
   webnet:
     external: true
