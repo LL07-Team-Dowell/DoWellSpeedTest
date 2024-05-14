@@ -1,5 +1,4 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
-import { ResponseHandler } from "../utils/responseHandler.js";
 import initDatacube from "../utils/datacubeHandler.js";
 import { formatDate } from "../utils/helper.js";
 import PayloadValidationServices from "../services/validationservices.js"
@@ -13,14 +12,27 @@ const createCollection = asyncHandler(async (req, res) => {
 
     const createCollectionResponse = await datacube.createCollection(database, collection);
 
-    res.json(
-        new ResponseHandler(200, createCollectionResponse, "New collection has been created successfully")
-    );
+    if (!createCollectionResponse.success) {
+        return res
+        .status(400)
+        .json({
+            success: false,
+            message: "Failed to create collection",
+            response: createCollectionResponse
+        });
+    }
+
+    return res
+    .status(201)
+    .json({
+        success: true,
+        message: "New collection has been created successfully"
+    })
 });
 
 const getData = asyncHandler(async (req, res) => {
     const { datacube, database, collection } = initDatacube();
-    const { limit, offset } = req.params;
+    const { limit, offset } = req.query;
 
     const response = await datacube.dataRetrieval(
         database,
@@ -30,15 +42,22 @@ const getData = asyncHandler(async (req, res) => {
         offset
     );
 
-    if (response.success) {
-        res.json(
-            new ResponseHandler(200, response.data, "Data retrieved successfully")
-        );
-    } else {
-        res.status(response.statusCode).json(
-            new ResponseHandler(data.statusCode, null, response.message, response.errors)
-        );
+    if(!response.success) {
+        return res
+       .status(400)
+       .json({
+            success: false,
+            message: "Failed to fetch data",
+            response: response
+        });
     }
+    return res
+    .status(200)
+    .json({
+        success: true,
+        message: "Data fetched successfully",
+        response: response
+    });
 });
 
 const insertData = asyncHandler(async (req, res) => {
@@ -51,9 +70,13 @@ const insertData = asyncHandler(async (req, res) => {
     });
 
     if (!validatePayload.isValid) {
-        res.json(
-            new ResponseHandler(400,null, "Kindly cross verify the payload", validatePayload.errors)
-        );
+        return res
+        .status(400)
+        .json({
+            success: false,
+            message: "Kindly cross verify the payload",
+            errors: validatePayload.errors
+        });
     }
 
     const data_to_insert= {
@@ -67,20 +90,28 @@ const insertData = asyncHandler(async (req, res) => {
 
     const response = await datacube.dataInsertion(database, collection, data_to_insert);
 
-    if (response.success){
-        res.json(
-            new ResponseHandler(201,data_to_insert,"Data inserted successfully")
-        )
-    } else {
-        res.status(response.statusCode).json(
-            new ResponseHandler(data.statusCode, null, response.message, response.errors)
-        );
+    if(!response?.success) {
+        return res
+       .status(400)
+       .json({
+            success: false,
+            message: "Failed to insert data",
+            response: response
+        });
     }
+
+    return res
+    .status(201)
+    .json({
+        success: true,
+        message: "Data inserted successfully",
+        response: response
+    });
 });
 
 const updateData = asyncHandler(async (req,res)=>{
     const { datacube, database, collection } = initDatacube();
-    const { id:collectionId } = req.params
+    const { id:collectionId } = req.query
     const { data } = req.body;
 
     const validatePayload = PayloadValidationServices.validateData(dataUpdationExample,{
@@ -89,9 +120,13 @@ const updateData = asyncHandler(async (req,res)=>{
     })
 
     if (!validatePayload.isValid) {
-        res.json(
-            new ResponseHandler(400,null, "Kindly cross verify the payload", validatePayload.errors)
-        );
+        return res
+        .status(400)
+        .json({
+            success: false,
+            message: "Kindly cross verify the payload",
+            errors: validatePayload.errors
+        });
     }
 
     const response = await datacube.dataUpdate(database, collection, 
@@ -101,20 +136,28 @@ const updateData = asyncHandler(async (req,res)=>{
         data
     );
 
-    if (response.success){
-        res.json(
-            new ResponseHandler(200,"Data update successfully")
-        )
-    } else {
-        res.status(response.statusCode).json(
-            new ResponseHandler(data.statusCode, null, response.message, response.errors)
-        );
+    if(!response.status){
+        return res
+       .status(400)
+       .json({
+            success: false,
+            message: "Failed to update data",
+            response: response
+        });
     }
+
+    return res
+    .status(200)
+    .json({
+        success: true,
+        message: "Data updated successfully",
+        response: response
+    });
 });
 
 const deleteData = asyncHandler(async (req,res)=>{
     const { datacube, database, collection } = initDatacube();
-    const { id:collectionId } = req.params
+    const { id:collectionId } = req.query
 
     const response = await datacube.dataDelete(database, collection, 
         {
@@ -122,23 +165,45 @@ const deleteData = asyncHandler(async (req,res)=>{
         }
     );
 
-    if (response.success){
-        res.json(
-            new ResponseHandler(200,"Data deleted successfully")
-        )
-    } else {
-        res.status(response.statusCode).json(
-            new ResponseHandler(data.statusCode, null, response.message, response.errors)
-        );
+    if(!response.success){
+        return res
+       .status(400)
+       .json({
+            success: false,
+            message: "Failed to delete data",
+            response: response
+        });
     }
+
+    return res
+    .status(200)
+    .json({
+        success: true,
+        message: "Data deleted successfully",
+        response: response
+    });
 })
+
+const tests = asyncHandler(async (req,res)=>{
+    const { limit, offset } = req.query
+
+    return res
+    .status(200)
+    .json({
+        success: true,
+        message: "Backend service is running fine",
+        limit: limit,
+        offset: offset
+    })
+});
 
 export { 
     createCollection,
     getData ,
     insertData,
     updateData,
-    deleteData
+    deleteData,
+    tests
 };
 
 

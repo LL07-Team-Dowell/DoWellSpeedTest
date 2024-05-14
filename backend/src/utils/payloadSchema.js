@@ -5,6 +5,8 @@ const dataInsertionExample = z.object({
     email: z.string().email(),
 });
 
+
+
 const dataUpdationExample = z.object({
     id: z.string(),
     data: z.object({
@@ -17,6 +19,7 @@ const dataUpdationExample = z.object({
         path: ["data"]
     })
 });
+
 
 export {
     dataInsertionExample,
